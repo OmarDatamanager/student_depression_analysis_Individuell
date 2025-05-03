@@ -178,7 +178,6 @@ Plan:
 - Kategoridata kan användas i algoritmer som stödjer Ordinal Encoding (t.ex. Decision Trees).
 - Flexibilitet: Kan enkelt omvandlas till One-Hot Encoding om nödvändigt.
 
----
 
 **3. Statistikanalysstrategi**
 
@@ -196,7 +195,6 @@ Plan:
 - Boxplot: Depression vs. Sömnkategorier.
 - Stapeldiagram: Andel depressiva fall per kategori.
 
----
 
 **4. Slutsats och Nästa Steg**
 
@@ -244,8 +242,6 @@ Plan:
 #1. Förstå analysens syfte  
 Undersöka effekten av varje oberoende variabel (academicPressure, sleepDuration, financialStress) på depressionsvariabeln, var och en för sig (Bivariate Analysis).
 
----
-
 #2. Analyssteg för varje variabel
 
 **#A. Analys av sambandet mellan "akademisk press" och "depression"**
@@ -271,8 +267,6 @@ Undersöka effekten av varje oberoende variabel (academicPressure, sleepDuration
 1. Korrelation:
    - Undersök om höga ekonomisk stress-nivåer samvarierar med högre depression (även om det inte är en direkt orsak).
 
----
-
 #3. Verktyg i SQLiteStudio för analys
 
 - GROUP BY-frågor:
@@ -281,8 +275,6 @@ Undersöka effekten av varje oberoende variabel (academicPressure, sleepDuration
   - `AVG(depression)`, `COUNT(*)`, `MAX()`, `MIN()`.
 - Exportera resultat:
   - Spara som CSV, JSON eller Excel för senare visualisering.
-
----
 
 #4. Tolka resultaten
 
@@ -295,14 +287,10 @@ För varje oberoende variabel, ställ dessa frågor:
 2. Är mönstret rimligt?  
    Jämför dina resultat med tidigare forskning om psykisk hälsa.
 
----
-
 #5. Dokumentera processen
 
 1. Spara varje SQL-fråga i en separat fil (t.ex. `sleep_depression_analysis.sql`).
 2. Exportera resultat som externa filer (CSV/bilder) för rapporten.
-
----
 
 #6. Förberedelse för nästa steg
 
@@ -311,8 +299,6 @@ Efter analysen kan du:
 - Jämföra resultat mellan variabler (vilken har starkast effekt?).
 - Använda diagram (med Google Charts) för att visualisera samband.
 
----
-
 Sammanfattning:  
 Metoden bygger på att bryta ned problemet i enkla bivariata samband, sedan **analysera varje samband i tre steg:**  
 1. Gruppering (efter oberoende variabel).  
@@ -320,7 +306,7 @@ Metoden bygger på att bryta ned problemet i enkla bivariata samband, sedan **an
 3. Tolkning (stödjer resultaten hypotesen?).
 
 
-"""""""""""""""""""""""""""""""""""""
+---
 
 11- ### **Arbetsplan för analys av sambandet mellan akademiskt tryck (academicPressure) och depression (depression)**
 
