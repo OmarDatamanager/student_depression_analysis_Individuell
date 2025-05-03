@@ -1,272 +1,255 @@
+### Individuell betygsgrundande inlämningsuppgift: Psykisk ohälsa bland studerande i Indien.
+
 1- Vad betyder CGPA kolumn!!
 
 CGPA är en förkortning för Cumulative Grade Point Average - det vill säga studentens genomsnittliga betyg.
 
-Varför kan det vara viktigt i analysen?
+Varför kan det vara viktigt i analysen?  
 Det kan vara kopplat till sämre psykisk hälsa om studenter med låga betyg lider av högre akademisk press eller depression.
 
+---
 
-
-2- Kolonnen "Work/Study Hours"
+2- Kolonnen "Work/Study Hours"  
 Representerar den totala tiden för arbete och studier per dag kombinerat.
 
-Anmärkning:
+Anmärkning:  
 Data skiljer inte mellan arbetstimmar och studietimmar separat, utan visar endast den sammanlagda summan.
 
 För en mer detaljerad analys kan detta kopplas till:
 
-Akademisk press (om merparten av timmarna spenderas på studier)
+- Akademisk press (om merparten av timmarna spenderas på studier)
+- Ekonomisk stress (om arbetstimmar är höga)
 
-Ekonomisk stress (om arbetstimmar är höga)
+---
 
+3- i nästa steg av att skapa och analysera databasen vill jag behålla endast dessa kolumner:
 
-
-3-  i nästa steg av att skapa och analysera databasen vill jag behålla endast dessa kolumner:
-
-id
-Gender
-Age
-Academic Pressure
-CGPA
-Sleep Duration
-Dietary Habits
-Have you ever had suicidal thoughts?
-Financial Stress
-Family History of Mental Illness
-Depression
+- id
+- Gender
+- Age
+- Academic Pressure
+- CGPA
+- Sleep Duration
+- Dietary Habits
+- Have you ever had suicidal thoughts?
+- Financial Stress
+- Family History of Mental Illness
+- Depression
 
 Jag tror att dessa kolumner är tillräckliga för att analysera hur huvudfaktorer påverkar mental hälsa (depression och självmordstankar) utan att göra analysen för komplex.
 
-Fördelar:
+**Fördelar:**
 
-Tydligt fokus på nyckelfaktorer som:
+- Tydligt fokus på nyckelfaktorer som:
+  - Akademisk press (Academic Pressure)
+  - Livskvalitet (Sleep Duration, Dietary Habits)
+  - Ekonomiska och genetiska faktorer (Financial Stress, Family History)
+- Förenklad analys utan att förlora viktiga insikter.
 
-Akademisk press (Academic Pressure)
-
-Livskvalitet (Sleep Duration, Dietary Habits)
-
-Ekonomiska och genetiska faktorer (Financial Stress, Family History)
-
-Förenklad analys utan att förlora viktiga insikter.
-
-Påverkan av arbetstid/studietid (Work/Study Hours):
-Analys av daglig utmattning.
+**Påverkan av arbetstid/studietid (Work/Study Hours):**  
+Analys av daglig utmattning.  
 Jag har exkluderat denna kolumn eftersom jag tror att den innehåller extremvärden och ibland otydliga data.
 
+---
 
 4- Användning av SQLite (inte direkt CSV) eftersom det möjliggör:
 
-Körning av avancerade SQL-frågor
+- Körning av avancerade SQL-frågor
+- Mer flexibel analys
 
-Mer flexibel analys
+**Arbetssteg:**
 
-Arbetssteg:
+- Skapa en ny databas i SQLiteStudio
+- Designa en tabell med kolumner som matchar CSV-filen, med hänsyn till:
+  - Använda kolumnnamn utan mellanslag (t.ex. sleepDuration istället för "Sleep Duration")
+  - Välja lämpliga datatyper (text, nummer etc.)
 
-Skapa en ny databas i SQLiteStudio
+**Slutmål:**
 
-Designa en tabell med kolumner som matchar CSV-filen, med hänsyn till:
-
-Använda kolumnnamn utan mellanslag (t.ex. sleepDuration istället för "Sleep Duration")
-
-Välja lämpliga datatyper (text, nummer etc.)
-
-
-Slutmål:
-
-Möjliggöra dataanalys med SQL-språket istället för enklare verktyg
-
+- Möjliggöra dataanalys med SQL-språket istället för enklare verktyg  
 Uppgiften går ut på att konvertera en CSV-fil till en SQLite-databas för kraftfullare analys!
 
+---
 
 5- databashantering:
 
-Datatyper valda:
+**Datatyper valda:**
 
 Alla kolumner (förutom CGPA) och (gender) satta till INTEGER för enkel analys.
 
-Fördelar:
+**Fördelar:**
 
-Effektiv lagring
+- Effektiv lagring
+- Snabbare beräkningar
+- Enklare statistikanalys
 
-Snabbare beräkningar
+**Nästa steg:**
 
-Enklare statistikanalys
+- Importera data från CSV
+- Verifiera dataintegritet
 
-Nästa steg:
+---
 
-Importera data från CSV
-
-Verifiera dataintegritet
-
-
-6- Datakonverteringar 
+6- Datakonverteringar
 
 Ändrade textvärden till numeriska koder:
 
-suicidalThoughts:
-"Yes" → 1, "No" → 0
+- suicidalThoughts:  
+  "Yes" → 1, "No" → 0
 
-familyMentalHistory:
-"Yes" → 1, "No" → 0
+- familyMentalHistory:  
+  "Yes" → 1, "No" → 0
 
-dietaryHabits:
-"Unhealthy"→0, "Moderate"→1, "Healthy"→2
+- dietaryHabits:  
+  "Unhealthy" → 0, "Moderate" → 1, "Healthy" → 2
 
-Det går även att konvertera gender-kolumnen från 'male', 'female' till 1, 0 om så önskas för framtida analyser, där den kan användas direkt i statistiska tester (som samband mellan kön och depression.
+Det går även att konvertera gender-kolumnen från 'male', 'female' till 1, 0 om så önskas för framtida analyser, där den kan användas direkt i statistiska tester (som samband mellan kön och depression).
 
+---
 
 7- Unika värden i sleepDuration-kolumnen:
 
-Ursprungliga värden:
+**Ursprungliga värden:**  
 '5-6 hours', '7-8 hours', 'Less than 5 hours', 'More than 8 hours', 'Others'
 
-Beslut om borttagning:
+**Beslut om borttagning:**
 
 'Others' förekom endast i 18 rader (en mycket liten del av datamängden).
 
-Borttagen för att:
+**Borttagen för att:**
 
-Undvika störningar i framtida analyser
+- Undvika störningar i framtida analyser
+- Behålla en ren och tydlig kategorisering
 
-Behålla en ren och tydlig kategorisering
+**Resultat efter åtgärd:**
 
-Resultat efter åtgärd:
-
-Nuvarande unika värden:
+Nuvarande unika värden:  
 '5-6 hours', '7-8 hours', 'Less than 5 hours', 'More than 8 hours'
 
+---
 
 8- Analysera sambandet mellan sömnvanor (sleepDuration) och depression bland indiska studenter.
- Datainnehåller fyra kategorier (Efter att kategorin 'Others' togs bort):
 
-'Less than 5 hours'
+**Datainnehåller fyra kategorier (Efter att kategorin 'Others' togs bort):**
 
-'5-6 hours'
+- 'Less than 5 hours'
+- '5-6 hours'
+- '7-8 hours'
+- 'More than 8 hours'
 
-'7-8 hours'
+**Mål:**
 
-'More than 8 hours'
+- Klassificera sömnkategorier för att underlätta statistisk analys.
+- Förbereda data för eventuell maskininlärning (för ML)
 
-Mål:
+**2. Beslutsprocess**
 
-Klassificera sömnkategorier för att underlätta statistisk analys.
-
-Förbereda data för eventuell maskininlärning (för ML)
-
-2. Beslutsprocess
-A. Val av Klassificering
+**A. Val av Klassificering**  
 Förslag:
 
-Textbaserade etiketter (för mänsklig läsbarhet):
+- 'Less than 5 hours' → "Brist på sömn" (Sleep Deficiency)
+- '5-6 hours' → "Otillräcklig sömn" (Insufficient Sleep)
+- '7-8 hours' → "Optimal sömn" (Optimal Sleep)
+- 'More than 8 hours' → "Översömn" (Excessive Sleep)
 
-'Less than 5 hours' → "Brist på sömn"  (Sleep Deficiency)
+**Motivering:**
 
-'5-6 hours' → "Otillräcklig sömn" (Insufficient Sleep)
+- Reflekterar vedertagna hälsorekommendationer (7-9 timmar för unga vuxna).
+- Gör det enkelt att identifiera riskgrupper (t.ex. brist på sömn kopplat till depression).
 
-'7-8 hours' → "Optimal sömn" (Optimal Sleep)
-
-'More than 8 hours' → "Översömn" (Excessive Sleep)
-
-Motivering:
-
-Reflekterar vedertagna hälsorekommendationer (7-9 timmar för unga vuxna).
-
-Gör det enkelt att identifiera riskgrupper (t.ex. brist på sömn kopplat till depression).
-
-B. Hantering av "Översömn"
+**B. Hantering av "Översömn"**  
 Utmaning:
 
-Översömn (>8 timmar) kan vara:
+- Översömn (>8 timmar) kan vara:
+  - Kulturellt normalt (t.ex. siesta-vanor).
+  - Patologiskt (länkat till depression).
 
-Kulturellt normalt (t.ex. siesta-vanor).
-
-Patologiskt (länkat till depression).
-
-
-C. Förberedelse för Maskininlärning
+**C. Förberedelse för Maskininlärning**  
 Plan:
 
-Textetiketter konverteras senare till numeriska koder vid behov:
+- Textetiketter konverteras senare till numeriska koder vid behov:
+  - "Brist på sömn" → 0
+  - "Otillräcklig sömn" → 1
+  - "Optimal sömn" → 2
+  - "Översömn" → 3
 
-"Brist på sömn" → 0
+**Fördelar:**
 
-"Otillräcklig sömn" → 1
+- Kategoridata kan användas i algoritmer som stödjer Ordinal Encoding (t.ex. Decision Trees).
+- Flexibilitet: Kan enkelt omvandlas till One-Hot Encoding om nödvändigt.
 
-"Optimal sömn" → 2
+---
 
-"Översömn" → 3
+**3. Statistikanalysstrategi**
 
-Fördelar:
+**A. Deskriptiv Statistik**
 
-Kategoridata kan användas i algoritmer som stödjer Ordinal Encoding (t.ex. Decision Trees).
+- Beräkna frekvenser för varje sömnkategori.
+- Jämför medelvärden av depression per kategori.
 
-Flexibilitet: Kan enkelt omvandlas till One-Hot Encoding om nödvändigt.
+**B. Hypotesprövning**
 
-3. Statistikanalysstrategi
-A. Deskriptiv Statistik
-Beräkna frekvenser för varje sömnkategori.
+- ANOVA eller Kruskal-Wallis för att testa skillnader i depression mellan grupperna.
 
-Jämför medelvärden av depression per kategori.
+**C. Visualisering**
 
-B. Hypotesprövning
-ANOVA eller Kruskal-Wallis för att testa skillnader i depression mellan grupperna.
+- Boxplot: Depression vs. Sömnkategorier.
+- Stapeldiagram: Andel depressiva fall per kategori.
 
-C. Visualisering
-Boxplot: Depression vs. Sömnkategorier.
+---
 
-Stapeldiagram: Andel depressiva fall per kategori.
+**4. Slutsats och Nästa Steg**
 
-4. Slutsats och Nästa Steg
-Textklassificeringen valdes för att göra data intuitiv under den explorativa analysen.
+- Textklassificeringen valdes för att göra data intuitiv under den explorativa analysen.
+- Numerisk kodning kommer att implementeras senare vid maskininlärning (beroende på algoritmval).
+- Dokumentation av alla beslut säkerställer reproducerbarhet.
 
-Numerisk kodning kommer att implementeras senare vid maskininlärning (beroende på algoritmval).
+**Kommande Åtgärder:**
 
-Dokumentation av alla beslut säkerställer reproducerbarhet.
+- Kör statistiska tester för att validera samband.
+- Utforska behovet av ytterligare datatransformation (t.ex. sammanslagning av kategorier).
 
-Kommande Åtgärder:
-
-Kör statistiska tester för att validera samband.
-
-Utforska behovet av ytterligare datatransformation (t.ex. sammanslagning av kategorier).
-
+---
 
 9- Rapport: Uppladdning av testmall till GitHub
 
-Sammanfattning
-Genomfört första uppladdning av statistics-template-5 till GitHub via GitHub Desktop med följande steg:
+**Sammanfattning**
 
-Förberedelser:
+- Genomfört första uppladdning av statistics-template-5 till GitHub via GitHub Desktop med följande steg:
 
-Exkludera node_modules/ och loggfiler.
+**Förberedelser:**
 
-La till README.md med projektbeskrivning på svenska.
+- Exkludera node_modules/ och loggfiler.
+- La till README.md med projektbeskrivning på svenska.
 
-Databashantering:
+**Databashantering:**
 
-SQLite-filen (student_depression.db) lades till i projektmappen.
+- SQLite-filen (student_depression.db) lades till i projektmappen.
 
-Uppladdning:
+**Uppladdning:**
 
-Alla filer verifierades i GitHub Desktop innan commit.
+- Alla filer verifierades i GitHub Desktop innan commit.
+- Push genomfördes utan fel till det nya repositoryt.
 
-Push genomfördes utan fel till det nya repositoryt.
+**Resultat**
 
-Resultat
-    Mallen och databasen finns nu på GitHub
-    Inga oönskade filer (som node_modules) laddades upp
-    Klar för nästa steg: dataanalys och anpassning
+- Mallen och databasen finns nu på GitHub
+- Inga oönskade filer (som node_modules) laddades upp
+- Klar för nästa steg: dataanalys och anpassning
 
+---
 
 10- Metodik för att analysera sambanden mellan variabler i SQLiteStudio
 
-#1. Förstå analysens syfte
+#1. Förstå analysens syfte  
 Undersöka effekten av varje oberoende variabel (academicPressure, sleepDuration, financialStress) på depressionsvariabeln, var och en för sig (Bivariate Analysis).
 
 ---
 
-#2. Analyssteg för varje variabel**
+#2. Analyssteg för varje variabel
 
-#A. Analys av sambandet mellan "akademisk press" och "depression"
+**#A. Analys av sambandet mellan "akademisk press" och "depression"**
+
 1. Beskriv fördelningen:
    - Använd en SQL-fråga för att se hur depressionen fördelas per nivå av akademisk press (t.ex. låg/medel/hög).
 
@@ -275,20 +258,23 @@ Undersöka effekten av varje oberoende variabel (academicPressure, sleepDuration
    - Leta efter mönster som:  
      "Är genomsnittlig depression högre hos studenter med hög akademisk press?"
 
-#B. Analys av sambandet mellan "sömnlängd" och "depression"
+**#B. Analys av sambandet mellan "sömnlängd" och "depression"**
+
 1. Kategorisera data (om "sömnlängd" är text som "5-6 timmar"):
    - Konvertera till text kategorier (t.ex. Insufficient Sleep, osv.).
 
 2. Visuell analys:
    - Skapa en tabell som visar antal studenter och depressionsfrekvens per sömnkategori.
 
-#C. Analys av "ekonomisk stress" och "depression"
+**#C. Analys av "ekonomisk stress" och "depression"**
+
 1. Korrelation:
    - Undersök om höga ekonomisk stress-nivåer samvarierar med högre depression (även om det inte är en direkt orsak).
 
 ---
 
 #3. Verktyg i SQLiteStudio för analys
+
 - GROUP BY-frågor:
   - Gruppera data efter oberoende variabel (t.ex. `GROUP BY academic_pressure`).
 - Statistiska funktioner:
@@ -299,35 +285,42 @@ Undersöka effekten av varje oberoende variabel (academicPressure, sleepDuration
 ---
 
 #4. Tolka resultaten
+
 För varje oberoende variabel, ställ dessa frågor:
-1. Finns det tydliga skillnader i genomsnittlig depression mellan kategorier?
-   - Exempel:  
-     "Studenter med hög arbetsbelastning har en genomsnittlig depression på 7.5/10 jämfört med 4/10 för övriga."
-2. Är mönstret rimligt?
-   - Jämför dina resultat med tidigare forskning om psykisk hälsa.
+
+1. Finns det tydliga skillnader i genomsnittlig depression mellan kategorier?  
+   Exempel:  
+   "Studenter med hög arbetsbelastning har en genomsnittlig depression på 7.5/10 jämfört med 4/10 för övriga."
+
+2. Är mönstret rimligt?  
+   Jämför dina resultat med tidigare forskning om psykisk hälsa.
 
 ---
 
-#5. Dokumentera processen**
-1. Spara varje SQL-fråga** i en separat fil (t.ex. `sleep_depression_analysis.sql`).
-2. Exportera resultat** som externa filer (CSV/bilder) för rapporten.
+#5. Dokumentera processen
+
+1. Spara varje SQL-fråga i en separat fil (t.ex. `sleep_depression_analysis.sql`).
+2. Exportera resultat som externa filer (CSV/bilder) för rapporten.
 
 ---
 
 #6. Förberedelse för nästa steg
+
 Efter analysen kan du:
-- Jämföra resultat** mellan variabler (vilken har starkast effekt?).
-- Använda diagram** (med Google Charts) för att visualisera samband.
+
+- Jämföra resultat mellan variabler (vilken har starkast effekt?).
+- Använda diagram (med Google Charts) för att visualisera samband.
 
 ---
 
 Sammanfattning:  
-Metoden bygger på att bryta ned problemet i enkla bivariata samband, sedan **analysera varje samband i tre steg:  
+Metoden bygger på att bryta ned problemet i enkla bivariata samband, sedan **analysera varje samband i tre steg:**  
 1. Gruppering (efter oberoende variabel).  
 2. Beräkning (genomsnitt, frekvenser).  
 3. Tolkning (stödjer resultaten hypotesen?).
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""
 
 11- ### **Arbetsplan för analys av sambandet mellan akademiskt tryck (academicPressure) och depression (depression)**
 
