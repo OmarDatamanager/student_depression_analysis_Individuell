@@ -554,4 +554,7 @@ där:
    - Kostinterventioner kan vara särskilt viktiga för gruppen med ohälsosamma vanor
    - Kombinerad approach (kost + psykisk hälsa) rekommenderas
    - Måttlig kostförbättring ger märkbar riskminskning
+   - 
+   # Statistics Template JS
+© ironboy/NodeHill 2025
 
